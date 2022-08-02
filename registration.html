@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Q04FINISHED.css">
+    <title>Register</title>
+    <style>
+        label{
+            line-height: 1.6;
+        }
+        form{
+            background-color: #B3C6FF;
+            color: #000000;
+            font-size: 1em;
+            border: none;
+            padding-left: 40px;
+        }
+
+        /*pop up window*/
+        .show {
+            width: 300px;
+            height: 200px;
+            background-color: blue;
+            border: solid 3px lightblue;
+            border-radius: 20px;
+
+            position: absolute;
+            top: 200px;
+            left: 200px;
+
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .pop-up-text {
+            position: relative;
+            top: 70px;
+        }
+        #close {
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            border: solid white 1px;
+            color: white;
+            background-color: transparent;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Register for Updates</h1>
+    </header>
+
+    <form action="send.php" method="post" name="registrationForm" onsubmit="return validateForm(e)">
+
+        <label>Complete the form below to register for email updates:</label>
+        <br>
+        <label>You must be aged 18-60 to register</label>
+
+        <br>
+
+        <label for="email">Enter email address</label>
+        <br>
+        <input type="email" required>
+
+        <br>
+
+        <label for="pass">Enter password:</label>
+        <br>
+        <input type="password" name="pass">
+
+        <br>
+
+        <label for="pass">Confirm password:</label>
+        <br>
+        <input type="password" name="confirmPass">
+
+        <br>
+
+        <label for="age">Enter age:</label>
+        <br>
+        <input type="text" name="age">
+
+        <br>
+        <br>
+
+        <input type="submit" value="Submit" name="submit">
+
+    </form>
+
+
+    <!--validation popUp-->
+    <div id="pop-up-box">
+        <button id="close">Close</button>
+        <p class="pop-up-text">Thank you for registering</p>
+    </div>
+
+    <script>
+        var form = document.forms['registrationForm'];
+       var btn = form['submit'];
+           
+       btn.addEventListener('click', function testRun(e){
+           e.preventDefault();
+
+           //pass validation
+           var passInput = form['pass'].value;
+           var confirmPass = form['confirmPass'].value;
+           
+           if(passInput.length < 6){
+               alert("Password must be at least 6 characters long");
+           }
+           else{
+               
+           }
+           if(confirmPass !== passInput){
+               alert("Passwords do not match");
+           }
+           else{
+               
+           }
+
+           //age validation
+           var ageInput = form['age'].value;
+               if(ageInput >= 18 && ageInput <= 60 ){
+                   
+           }
+           else {
+               alert("Please enter a valid age");
+           }
+           });
+
+           
+            
+            var popUpText = document.getElementsByClassName("pop-up-text")[0];
+
+        //I could not
+       function popUp(){
+        var popUpBox = document.getElementById("pop-up-box");
+        var closeBtn = document.getElementById("close");
+            popUpBox.setAttribute("class", "show");
+            popUpBox.appendChild(popUpText);
+            popUpBox.appendChild(closeBtn);
+
+            if(popUpBox.className == "show"){
+                closeBtn.onclick = function(){
+                    popUpBox.removeAttribute("class", "show");
+                    popUpBox.removeChild(popUpText);
+                }
+            }
+       }
+       
+   </script>
+</body>
+</html>
